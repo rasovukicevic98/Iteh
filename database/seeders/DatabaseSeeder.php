@@ -19,8 +19,41 @@ class DatabaseSeeder extends Seeder
         Category::truncate();
         User::truncate();
 
-        User::factory(3)->create();
-        Category::insert([
+      //  Ad::factory(5)->create(); 
+
+        $user = User::factory()->create();
+        User::factory(5)->create();
+        $cat1 = Category::factory()->create();
+        $cat2 = Category::create(['name'=>"Software developer", 'slug'=>'softdev']);
+        $cat3 = Category::create(['name'=>"Web developer", 'slug'=>'webdev']);
+        $cat4 = Category::create(['name'=>"Database administrators and architects", 'slug'=>'db_admin&arch']);
+
+        Ad::factory(5)->create([
+            'user_id'=>$user->id,
+            'category_id'=>$cat2->id,
+        ]);
+
+        
+        Ad::factory(2)->create([
+            'user_id'=>$user->id,
+            'category_id'=>$cat3->id,
+        ]);
+
+        
+        Ad::factory(5)->create([
+            'user_id'=>$user->id,
+            'category_id'=>$cat4->id,
+        ]);
+       
+      //  $cat2 = Category()-create();
+       // $cat3 = Category()-create();
+
+
+
+         // User::factory(10)->create();
+           // Category::factory(5)->create();
+           // Ad::factory(5)->create(); 
+      /*  Category::insert([
             [
             'name'=>'Software developer',
             'slug'=>'softdev',
@@ -35,7 +68,9 @@ class DatabaseSeeder extends Seeder
             'name'=>'Database administrators and architects',
             'slug'=>'dbadmin&arch',
         ]
+        
     ]);
+    
 
         $ad1 = new Ad;
         $ad1->headline="Naslov 1";
@@ -54,5 +89,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // \App\Models\User::factory(10)->create();
+        */
     }
 }

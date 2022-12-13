@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeNameToUsernameInUsers extends Migration
+class AddCollumnUserIdToAdsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,8 @@ class ChangeNameToUsernameInUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('ads', function (Blueprint $table) {
+            $table->foreignId('user_id');
         });
     }
 
@@ -24,7 +25,8 @@ class ChangeNameToUsernameInUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('ads', function (Blueprint $table) {
+            $table->dropForeignId('user_id');
 
         });
     }
