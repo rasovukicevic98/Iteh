@@ -22,14 +22,18 @@ class DatabaseSeeder extends Seeder
       //  Ad::factory(5)->create(); 
 
         $user = User::factory()->create();
-        User::factory(5)->create();
+        User::factory(5)->create([
+            'password'=>"rasoelab",
+        ]);
         $cat1 = Category::factory()->create();
+        $user1 = User::create(['name'=>"Raso",'email'=>"rasovuk@gmail.com",'password'=>"rasoelab"]);
+        
         $cat2 = Category::create(['name'=>"Software developer", 'slug'=>'softdev']);
         $cat3 = Category::create(['name'=>"Web developer", 'slug'=>'webdev']);
         $cat4 = Category::create(['name'=>"Database administrators and architects", 'slug'=>'db_admin&arch']);
 
         Ad::factory(5)->create([
-            'user_id'=>$user->id,
+            'user_id'=>$user1->id,
             'category_id'=>$cat2->id,
         ]);
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdTestController;
@@ -25,11 +26,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-   //  Route::get('/ads/{id}', [AdTestController::class, 'show']);
-   // Route::get('/ads', [AdTestController::class, 'index']);
+
+    Route::post('/logovanje', [AuthController::class, 'logovanje']);
+    Route::get('/ads/{id}', [AdTestController::class, 'show']);
+    Route::get('/ads', [AdTestController::class, 'index']);
 
     Route::resource('ads', AdController::class);
-//    Route::resource('ads', AdTestController::class);
+   Route::resource('ads', AdTestController::class);
 
     Route::resource('users', UserController::class);
-Route::get('users/{id}/ads', [UserAdController::class, 'index'])->name('users.ads.index'); 
+    Route::get('users/{id}/ads', [UserAdController::class, 'index'])->name('users.ads.index');
+   
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/loging', [AuthController::class, 'loging']);
+    Route::post('/login', [AuthController::class, 'login']);
